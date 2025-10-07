@@ -1,0 +1,6 @@
+@Guber.CoordinatesApi_HostAddress = http://localhost:5157
+
+GET {{Guber.CoordinatesApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
