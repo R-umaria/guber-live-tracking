@@ -18,3 +18,18 @@ public record FareResponse(double BaseFare, double PerKm, double DistanceKm, dou
 public record LiveLocationUpdate(string EntityId, double Lat, double Lon, DateTimeOffset Timestamp);
 
 public record LastLocationResponse(string EntityId, double Lat, double Lon, DateTimeOffset Timestamp);
+
+public record EstimateRequest(string PickupAddress, string DestinationAddress);
+
+public record EstimateResponse(
+    string PickupAddress,
+    string DestinationAddress,
+    double PickupLat,
+    double PickupLon,
+    double DestinationLat,
+    double DestinationLon,
+    double DistanceKm,
+    double DurationMinutes,
+    double Fare,
+    string Polyline
+);

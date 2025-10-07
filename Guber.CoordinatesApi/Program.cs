@@ -44,6 +44,8 @@ builder.Services.AddHttpClient<Guber.CoordinatesApi.Services.IGeocodingService, 
     client.Timeout = TimeSpan.FromSeconds(cfg.GetValue("TimeoutSeconds", 10));
 }).AddPolicyHandler(GetRetryPolicy());
 
+builder.Services.AddScoped<Guber.CoordinatesApi.Services.IEstimateService, Guber.CoordinatesApi.Services.EstimateService>();
+
 builder.Services.AddHttpClient<Guber.CoordinatesApi.Services.IRoutingService, Guber.CoordinatesApi.Services.OsrmRoutingService>(client =>
 {
     var cfg = builder.Configuration.GetSection("Routing");

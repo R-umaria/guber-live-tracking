@@ -4,6 +4,11 @@
         <name>Guber.CoordinatesApi</name>
     </assembly>
     <members>
+        <member name="M:Guber.CoordinatesApi.Controllers.EstimateController.Estimate(Guber.CoordinatesApi.Models.EstimateRequest,System.Threading.CancellationToken)">
+            <summary>
+            Estimate route, distance, time, and fare between two addresses.
+            </summary>
+        </member>
         <member name="M:Guber.CoordinatesApi.Controllers.FareController.Calc(Guber.CoordinatesApi.Models.FareRequest)">
             <summary>Calculate fare from distance in km.</summary>
         </member>
