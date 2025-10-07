@@ -1,61 +1,73 @@
-# Guber Live Tracking Module
+# 🧭 Guber – Coordinates & Fare Calculation Module
 
-## Overview
-The **Guber Live Tracking module** provides backend capabilities for real-time location tracking, routing, and fare estimation for the *Guber* ride-sharing app.  
-It connects mobile clients (drivers/riders), the navigation/routing engine, and the payment system.
+This module is part of the **Guber (Uber Clone)** enterprise system.  
+It handles:
+- Address → Coordinates conversion (Geocoding)
+- Route calculation and distance estimation
+- Fare computation (`Base Fare + Per-Km Rate`)
+- Live driver/user location updates
+- Simple REST APIs for integration with other teams (UI, Driver Management, Payment)
 
-## Features
-- Collect driver GPS coordinates (via WebSocket).
-- Broadcast live locations to clients.
-- Fetch routes & estimated costs between pickup and destination.
-- Geocoding (addresses ↔ coordinates).
-- Designed to integrate with Payment, User, and Driver modules.
+Built with **C# (.NET 8)** using **OpenStreetMap (Nominatim)** and **OSRM** routing.
 
-## Endpoints
-- `POST /geocode/` → forward or reverse geocoding (uses Nominatim/OSM).
-- `POST /route/` → route calculation between A and B (future: OSRM/Mapbox).
-- `WS /ws/driver/{driver_id}` → live driver updates.
+---
 
-## Deployment
-- Backend: Python FastAPI
-- Containerization: Docker (works with Traccar if needed)
-- Docs: OpenAPI auto-generated at `/docs`
+## Getting Started
 
-## Development
-- Team, kindly use virtual environment for development to avoid any version issues.
-- Always create a new branch for development and issue PR to merge code into main.
+### 1 Prerequisites
+- **.NET 8 SDK** → [download here](https://dotnet.microsoft.com/download)
+- Any editor (Visual Studio 2022 or VS Code with C# Dev Kit)
+- Internet connection (for OSM/OSRM APIs)
 
-- How to run:
-  1. Clone the repository:
-     ```bash
-     git clone <repo-url>
-     cd guber-live-tracking
-     ```
+### 2 Clone the repository
+```bash
+git clone https://github.com/R-umaria/guber-live-tracking/
+cd guber-live-tracking/Guber.CoordinatesApi   
 
-  2. Create and activate a virtual environment:
-     ```bash
-     python -m venv .venv
-     # On Linux/Mac
-     source .venv/bin/activate
-     # On Windows
-     .venv\Scripts\activate
-     ```
+### 3 Run the api
+```
+bash
+dotnet restore
+dotnet run
+```
 
-  3. Install dependencies:
-     ```bash
-     pip install -r requirements.txt
-     ```
+Once started, you’ll see:
 
-  4. Run the development server:
-     ```bash
-     uvicorn app.main:app --reload
-     ```
+"Now listening on: http://localhost:5157"
 
-- **Branch naming convention:**  
-  Use clear prefixes like:
-  - `feature/<task>-<short-desc>-<your-name>`  
-  - `bugfix/<short-desc>`  
-  - `docs/<short-desc>`  
+Then open:
+```http://localhost:5157/swagger```
 
-  Example:   
-   ``` feature/get-api-lat-long-rishi```
+### API overview
+
+| Endpoint                   | Method | Description                    | Example                                                                        |
+| -------------------------- | ------ | ------------------------------ | ------------------------------------------------------------------------------ |
+| `/health`                  | GET    | Check if service is running    | ✓                                                                              |
+| `/api/geocode`             | GET    | Convert address → lat/lon      | `?query=Conestoga+College`                                                     |
+| `/api/route`               | POST   | Get route, distance, duration  | `{ "StartLat": 43.48, "StartLon": -80.52, "EndLat": 43.50, "EndLon": -80.54 }` |
+| `/api/fare`                | POST   | Compute fare                   | `{ "DistanceKm": 2.4 }`                                                        |
+| `/api/liveLocation/driver` | POST   | Update driver’s live location  | `{ "EntityId": "D001", "Lat": 43.49, "Lon": -80.53 }`                          |
+| `/api/liveLocation/user`   | POST   | Update user’s current location | `{ "EntityId": "U001", "Lat": 43.48, "Lon": -80.52 }`                          |
+| `/api/lastLocation`        | GET    | Get last known location        | `?entityType=driver&entityId=D001`                                             |
+
+### Fare Formula
+Fare = Base Fare ($4.25) + (Distance × $1.70/km)
+
+Example:
+If distance = 2.4 km → $4.25 + (2.4 × 1.7) = $8.33\
+
+### Notes
+
+Data is stored in-memory (resets when the app restarts).
+
+Make sure to post at least one live location before fetching /api/lastLocation.
+
+All responses are in JSON and visible in Swagger UI.
+
+Works with other Guber modules via REST.
+
+### Contributors
+
+## Coordinates & Fare Module Team
+
+Rishi Umaria 
