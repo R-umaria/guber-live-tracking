@@ -49,6 +49,9 @@ Then open:
 | `/api/liveLocation/driver` | POST   | Update driver’s live location  | `{ "EntityId": "D001", "Lat": 43.49, "Lon": -80.53 }`                          |
 | `/api/liveLocation/user`   | POST   | Update user’s current location | `{ "EntityId": "U001", "Lat": 43.48, "Lon": -80.52 }`                          |
 | `/api/lastLocation`        | GET    | Get last known location        | `?entityType=driver&entityId=D001`                                             |
+| Endpoint        | Method | Description                                                                                    | Example                                                                                                        |
+| --------------- | ------ | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `/api/estimate` | POST   | **Takes pickup & destination addresses, returns geocoded route, distance, fare, and polyline** | `{ "pickupAddress": "Conestoga College, Waterloo, ON", "destinationAddress": "Conestoga Mall, Waterloo, ON" }` |
 
 ### Fare Formula
 Fare = Base Fare ($4.25) + (Distance × $1.70/km)
