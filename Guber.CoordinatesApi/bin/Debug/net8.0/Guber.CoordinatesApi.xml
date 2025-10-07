@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Guber.CoordinatesApi</name>
+    </assembly>
+    <members>
+        <member name="M:Guber.CoordinatesApi.Controllers.FareController.Calc(Guber.CoordinatesApi.Models.FareRequest)">
+            <summary>Calculate fare from distance in km.</summary>
+        </member>
+        <member name="M:Guber.CoordinatesApi.Controllers.GeocodingController.Geocode(System.String,System.Threading.CancellationToken)">
+            <summary>Convert an address/place into coordinates.</summary>
+        </member>
+        <member name="M:Guber.CoordinatesApi.Controllers.LiveLocationController.UpdateDriver(Guber.CoordinatesApi.Models.LiveLocationUpdate)">
+            <summary>Update driver's live location.</summary>
+        </member>
+        <member name="M:Guber.CoordinatesApi.Controllers.LiveLocationController.UpdateUser(Guber.CoordinatesApi.Models.LiveLocationUpdate)">
+            <summary>Update user's location.</summary>
+        </member>
+        <member name="M:Guber.CoordinatesApi.Controllers.LiveLocationController.Last(System.String,System.String)">
+            <summary>Get last known location for a driver or user.</summary>
+        </member>
+        <member name="M:Guber.CoordinatesApi.Controllers.RoutingController.GetRoute(Guber.CoordinatesApi.Models.RouteRequest,System.Threading.CancellationToken)">
+            <summary>Get route, distance and duration between two coordinates.</summary>
+        </member>
+    </members>
+</doc>
