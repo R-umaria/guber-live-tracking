@@ -23,6 +23,7 @@ Built with **C# (.NET 8)** using **OpenStreetMap (Nominatim)** and **OSRM** rout
 ```bash
 git clone https://github.com/R-umaria/guber-live-tracking/
 cd guber-live-tracking/Guber.CoordinatesApi   
+```
 
 ### 3 Run the api
 ```
@@ -38,7 +39,7 @@ Once started, you’ll see:
 Then open:
 ```http://localhost:5157/swagger```
 
-### API overview
+## API overview
 
 | Endpoint                   | Method | Description                    | Example                                                                        |
 | -------------------------- | ------ | ------------------------------ | ------------------------------------------------------------------------------ |
@@ -66,8 +67,8 @@ All responses are in JSON and visible in Swagger UI.
 
 Works with other Guber modules via REST.
 
-### Contributors
+## Contributors
 
-## Coordinates & Fare Module Team
+### Coordinates & Fare Module Team
 
 Rishi Umaria 
