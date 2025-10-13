@@ -1,7 +1,6 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using FluentAssertions;
 using Xunit;
 
 namespace CoordinatesApi.Tests;
@@ -40,7 +39,7 @@ public class LiveApiTests
         resp.EnsureSuccessStatusCode();
         var json = await resp.Content.ReadFromJsonAsync<JsonElement>(_json);
         var fare = json.GetProperty("totalFare").GetDouble();
-        fare.Should().BeInRange(7.9, 8.7); // 4.25 + 1.7*2.4 = 8.33
+        Assert.InRange(7.9, 8.7); // 4.25 + 1.7*2.4 = 8.33
     }
 
     [Fact(DisplayName= "Route: returns distance & duration between two Waterloo points")]

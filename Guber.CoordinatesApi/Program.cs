@@ -64,3 +64,6 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+// Make the implicit Program class visible to test projects
+public partial class Program { }
