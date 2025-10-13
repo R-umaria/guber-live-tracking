@@ -6,3 +6,6 @@ obj/
 *.swp
 *.tmp
 *.log
+*.DS_Store
+*.vscode/
+*.idea/
