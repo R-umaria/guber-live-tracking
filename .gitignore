@@ -1,4 +1,4 @@
-# --- C# / .NET
+# General dev noise
 bin/
 obj/
 .vs/
@@ -7,49 +7,21 @@ obj/
 *.swp
 *.tmp
 *.log
-*.DS_Store
+.DS_Store
 .vscode/
 .idea/
 
-# Rider / JetBrains
-*.ipr
-*.iws
-*.iml
-.idea/
+# Doxygen outputs (anywhere)
+**/html/
+**/latex/
+**/man/
+**/rtf/
+**/xml/
+**/docbook/
 
-# NuGet
-*.nupkg
-*.snupkg
-packages/
-.nuget/
-
-# Coverage / test
-TestResult*/
-TestResults/
-*.coverage*
-*.trx
-.coverage
-coverage/
-
-# Local tooling
-*.fakeg
-
-# --- Doxygen (ignore all generated output)
-docs/html/
-docs/latex/
-docs/man/
-docs/rtf/
-docs/xml/
-
-# In case an older config wrote to repo root
-/html/
-/latex/
-/man/
-/rtf/
-/xml/
-
-# Keep config + authored docs
-!Doxyfile
-!docs/index.md
+# Keep our authored docs (config + markdown + images)
+!docs/
+!docs/*.md
+!docs/img/
 !docs/img/**
-!docs/**/*.md
+!Doxyfile
