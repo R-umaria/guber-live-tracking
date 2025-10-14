@@ -1,31 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rishi\\source\\repos\\Project V\\Guber\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj": {}
+    "C:\\Users\\Brian\\OneDrive\\Desktop\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rishi\\source\\repos\\Project V\\Guber\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj": {
+    "C:\\Users\\Brian\\OneDrive\\Desktop\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rishi\\source\\repos\\Project V\\Guber\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj",
+        "projectUniqueName": "C:\\Users\\Brian\\OneDrive\\Desktop\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj",
         "projectName": "Guber.CoordinatesApi",
-        "projectPath": "C:\\Users\\Rishi\\source\\repos\\Project V\\Guber\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj",
-        "packagesPath": "C:\\Users\\Rishi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rishi\\source\\repos\\Project V\\Guber\\guber-live-tracking\\Guber.CoordinatesApi\\obj\\",
+        "projectPath": "C:\\Users\\Brian\\OneDrive\\Desktop\\guber-live-tracking\\Guber.CoordinatesApi\\Guber.CoordinatesApi.csproj",
+        "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Brian\\OneDrive\\Desktop\\guber-live-tracking\\Guber.CoordinatesApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rishi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,8 +41,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -90,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

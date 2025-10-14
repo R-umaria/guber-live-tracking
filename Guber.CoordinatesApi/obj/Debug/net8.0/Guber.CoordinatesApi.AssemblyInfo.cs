@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Guber.CoordinatesApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8599ce09344907c04cba73369731cf9faaa3c2d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+278d7b697619e4196989d5219ee1a7dabe1f21bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Guber.CoordinatesApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Guber.CoordinatesApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

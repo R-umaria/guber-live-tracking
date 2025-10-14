@@ -43,3 +43,46 @@ C:\Users\Rishi\source\repos\Project V\Guber\guber-live-tracking\Guber.Coordinate
 C:\Users\Rishi\source\repos\Project V\Guber\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.pdb
 C:\Users\Rishi\source\repos\Project V\Guber\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.genruntimeconfig.cache
 C:\Users\Rishi\source\repos\Project V\Guber\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\ref\Guber.CoordinatesApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\appsettings.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.exe
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.deps.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.runtimeconfig.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.pdb
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Guber.CoordinatesApi.xml
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Itinero.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Microsoft.Extensions.Http.Polly.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\OsmSharp.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Polly.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Polly.Extensions.Http.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\protobuf-net.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\protobuf-net.Core.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Reminiscence.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.csproj.AssemblyReference.cache
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.AssemblyInfoInputs.cache
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.AssemblyInfo.cs
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.csproj.CoreCompileInputs.cache
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.sourcelink.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\scopedcss\bundle\Guber.CoordinatesApi.styles.css
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.Co.90C3AC28.Up2Date
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\refint\Guber.CoordinatesApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.xml
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.pdb
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\Guber.CoordinatesApi.genruntimeconfig.cache
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\ref\Guber.CoordinatesApi.dll
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets\msbuild.Guber.CoordinatesApi.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets\msbuild.build.Guber.CoordinatesApi.props
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Guber.CoordinatesApi.props
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Guber.CoordinatesApi.props
+C:\Users\Brian\OneDrive\Desktop\guber-live-tracking\Guber.CoordinatesApi\obj\Debug\net8.0\staticwebassets.pack.json
