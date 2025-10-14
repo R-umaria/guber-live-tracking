@@ -19,7 +19,7 @@ obj/
 **/xml/
 **/docbook/
 
-# Keep our authored docs (config + markdown + images)
+# Doxgen 
 !docs/
 !docs/*.md
 !docs/img/
