@@ -1,3 +1,4 @@
+# General dev noise
 bin/
 obj/
 .vs/
@@ -6,6 +7,21 @@ obj/
 *.swp
 *.tmp
 *.log
-*.DS_Store
-*.vscode/
-*.idea/
+.DS_Store
+.vscode/
+.idea/
+
+# Doxygen outputs (anywhere)
+**/html/
+**/latex/
+**/man/
+**/rtf/
+**/xml/
+**/docbook/
+
+# Keep our authored docs (config + markdown + images)
+!docs/
+!docs/*.md
+!docs/img/
+!docs/img/**
+!Doxyfile
