@@ -1,3 +1,4 @@
+# --- C# / .NET
 bin/
 obj/
 .vs/
@@ -7,5 +8,48 @@ obj/
 *.tmp
 *.log
 *.DS_Store
-*.vscode/
-*.idea/
+.vscode/
+.idea/
+
+# Rider / JetBrains
+*.ipr
+*.iws
+*.iml
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Coverage / test
+TestResult*/
+TestResults/
+*.coverage*
+*.trx
+.coverage
+coverage/
+
+# Local tooling
+*.fakeg
+
+# --- Doxygen (ignore all generated output)
+docs/html/
+docs/latex/
+docs/man/
+docs/rtf/
+docs/xml/
+
+# In case an older config wrote to repo root
+/html/
+/latex/
+/man/
+/rtf/
+/xml/
+
+# Keep config + authored docs
+!Doxyfile
+!docs/index.md
+!docs/img/**
+!docs/**/*.md
