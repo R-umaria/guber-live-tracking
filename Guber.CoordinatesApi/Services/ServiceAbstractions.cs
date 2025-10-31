@@ -14,7 +14,7 @@ public interface IRoutingService
 
 public interface IFareService
 {
-    FareResponse Calculate(double distanceKm);
+    FareResponse Calculate(double distanceKm, string type, bool pet);
 }
 
 public interface ILocationStore

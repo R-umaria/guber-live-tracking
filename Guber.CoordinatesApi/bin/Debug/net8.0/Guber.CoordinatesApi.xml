@@ -10,7 +10,8 @@
             </summary>
         </member>
         <member name="M:Guber.CoordinatesApi.Controllers.FareController.Calc(Guber.CoordinatesApi.Models.FareRequest)">
-            <summary>Calculate fare from distance in km.</summary>
+            <summary>Calculate fare from distance in km. Additonally Add car type and pet friendly</summary>
+            
         </member>
         <member name="M:Guber.CoordinatesApi.Controllers.GeocodingController.Geocode(System.String,System.Threading.CancellationToken)">
             <summary>Convert an address/place into coordinates.</summary>

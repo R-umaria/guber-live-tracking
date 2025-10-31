@@ -12,14 +12,14 @@ public record RouteResponse(
     string Polyline // polyline6 string suitable for map rendering
 );
 
-public record FareRequest(double DistanceKm);
-public record FareResponse(double BaseFare, double PerKm, double DistanceKm, double TotalFare);
+public record FareRequest(double DistanceKm, string type, bool pet);
+public record FareResponse(double BaseFare, double PerKm, double typePrice, double petFee, double DistanceKm, double TotalFare);
 
 public record LiveLocationUpdate(string EntityId, double Lat, double Lon, DateTimeOffset Timestamp);
 
 public record LastLocationResponse(string EntityId, double Lat, double Lon, DateTimeOffset Timestamp);
 
-public record EstimateRequest(string PickupAddress, string DestinationAddress);
+public record EstimateRequest(string PickupAddress, string DestinationAddress, string type, bool pet);
 
 public record EstimateResponse(
     string PickupAddress,
@@ -28,6 +28,8 @@ public record EstimateResponse(
     double PickupLon,
     double DestinationLat,
     double DestinationLon,
+    string type,
+    bool pet,
     double DistanceKm,
     double DurationMinutes,
     double Fare,
