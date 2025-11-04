@@ -14,7 +14,7 @@ jobs:
       - name: Build, run API, and test
         run: |
           # Start the API (corrected path)
-          dotnet run --project ./src/CoordinatesApi/CoordinatesApi.csproj --urls "http://localhost:5157" &
+          dotnet run --project ./Guber.CoordinatesApi/Guber.CoordinatesApi.csproj --urls "http://localhost:5157" &
           API_PID=$!
 
           # Wait for the API to become available
