@@ -35,7 +35,7 @@ public class LiveApiTests
     [Fact(DisplayName= "Fare: 2.4 km ≈ $8.33 (±$0.40)")]
     public async Task Fare_ShouldReturnValidAmount()
     {
-        var payload = JsonContent.Create(new { DistanceKm = 2.4 });
+        var payload = JsonContent.Create(new { DistanceKm = 2.4, type = "X", pet = false });
         var resp = await _http.PostAsync("/api/fare", payload);
         resp.EnsureSuccessStatusCode();
         var json = await resp.Content.ReadFromJsonAsync<JsonElement>(_json);
