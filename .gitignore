@@ -11,17 +11,3 @@ obj/
 .vscode/
 .idea/
 
-# Doxygen outputs (anywhere)
-**/html/
-**/latex/
-**/man/
-**/rtf/
-**/xml/
-**/docbook/
-
-# Doxgen 
-!docs/
-!docs/*.md
-!docs/img/
-!docs/img/**
-!Doxyfile
