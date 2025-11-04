@@ -5,6 +5,7 @@ It handles:
 - Address → Coordinates conversion (Geocoding)
 - Route calculation and distance estimation
 - Fare computation (`Base Fare + Per-Km Rate`)
+- Additional Charges: Pet fee, Car type price
 - Live driver/user location updates
 - Simple REST APIs for integration with other teams (UI, Driver Management, Payment)
 
@@ -46,18 +47,23 @@ Then open:
 | `/health`                  | GET    | Check if service is running    | ✓                                                                              |
 | `/api/geocode`             | GET    | Convert address → lat/lon      | `?query=Conestoga+College`                                                     |
 | `/api/route`               | POST   | Get route, distance, duration  | `{ "StartLat": 43.48, "StartLon": -80.52, "EndLat": 43.50, "EndLon": -80.54 }` |
-| `/api/fare`                | POST   | Compute fare                   | `{ "DistanceKm": 2.4 }`                                                        |
+| `/api/fare`                | POST   | Compute fare                   | `{ "DistanceKm": 2.4, "CarType": XL, "PetFriendly": False }`                                                        |
 | `/api/liveLocation/driver` | POST   | Update driver’s live location  | `{ "EntityId": "D001", "Lat": 43.49, "Lon": -80.53 }`                          |
 | `/api/liveLocation/user`   | POST   | Update user’s current location | `{ "EntityId": "U001", "Lat": 43.48, "Lon": -80.52 }`                          |
 | `/api/lastLocation`        | GET    | Get last known location        | `?entityType=driver&entityId=D001`                                             |
 | Endpoint        | Method | Description                                                                                    | Example                                                                                                        |
-| `/api/estimate` | POST   | **Takes pickup & destination addresses, returns geocoded route, distance, fare, and polyline** | `{ "pickupAddress": "Conestoga College, Waterloo, ON", "destinationAddress": "Conestoga Mall, Waterloo, ON" }` |
+| `/api/estimate` | POST   | **Takes pickup & destination addresses, returns geocoded route, distance, fare, and polyline** | `{ "pickupAddress": "Conestoga College, Waterloo, ON", "destinationAddress": "Conestoga Mall, Waterloo, ON" "CarType: "X", "PetFriendly"" true }` |
 
 ### Fare Formula
 Fare = Base Fare ($4.25) + (Distance × $1.70/km)
+Additonal Charges: 
+Pet Friendly $7.50
+XL CarType $1.70km -> $2.05km
 
 Example:
 If distance = 2.4 km → $4.25 + (2.4 × 1.7) = $8.33\
+
+If distance = 5.5, pet friendly, XL Cartype -> 4.25 + 7.50 + (5.5 x 2.05) = 23.02
 
 ### Notes
 
