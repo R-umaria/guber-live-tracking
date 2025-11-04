@@ -32,9 +32,11 @@ public class AuthController : ControllerBase
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+        var userIdWithPrefix = $"driver:{request.UserId}".ToLowerInvariant();
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, request.UserId),
+            new Claim(JwtRegisteredClaimNames.Sub, userIdWithPrefix),
+            new Claim(ClaimTypes.NameIdentifier, userIdWithPrefix),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,8 +99,8 @@ builder.Services.AddAuthentication("Bearer")
             },
             OnTokenValidated = context =>
             {
-                Console.WriteLine("[DEBUG] JWT token validated successfully for user: " +
-                    context.Principal?.Identity?.Name ?? context.Principal?.FindFirst("sub")?.Value);
+                var authenticatedId = context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                Console.WriteLine($"[DEBUG] JWT token validated successfully for user: {authenticatedId}");
                 return Task.CompletedTask;
             },
             OnMessageReceived = context =>
