@@ -1,11 +1,10 @@
-bin/
-obj/
-.vs/
-*.user
-*.suo
-*.swp
-*.tmp
-*.log
-*.DS_Store
-*.vscode/
-*.idea/
+# Ignore build output
+Guber.CoordinatesApi/bin/
+Guber.CoordinatesApi/obj/
+
+# Ignore local settings
+Guber.CoordinatesApi/appsettings.json
+Guber.CoordinatesApi/appsettings.Development.json
+
+# Ignore user secrets folder
+# *.user
