@@ -1,9 +1,11 @@
 using Guber.CoordinatesApi.Models;
 using Guber.CoordinatesApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Guber.CoordinatesApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/fare")]
 public sealed class FareController : ControllerBase

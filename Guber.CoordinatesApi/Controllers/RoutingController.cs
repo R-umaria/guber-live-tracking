@@ -1,9 +1,11 @@
 using Guber.CoordinatesApi.Models;
 using Guber.CoordinatesApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Guber.CoordinatesApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/route")]
 public sealed class RoutingController : ControllerBase

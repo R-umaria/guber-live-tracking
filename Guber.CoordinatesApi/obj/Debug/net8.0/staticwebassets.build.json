@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"kxPQ8pJuXlGsB07RYUedhJ95Ep2hVxThFTBbkC8e5Rc=","Source":"Guber.CoordinatesApi","BasePath":"_content/Guber.CoordinatesApi","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "w646tGyr+Vb1maeTr1jt3nG3/AR9FWefURh6iJ6J4+8=",
+  "Source": "Guber.CoordinatesApi",
+  "BasePath": "_content/Guber.CoordinatesApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
