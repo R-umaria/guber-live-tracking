@@ -11,7 +11,7 @@ public class DemoClient
 {
     static readonly HttpClient client = new HttpClient
     {
-        BaseAddress = new Uri("http://10.172.55.21:5157"),
+        BaseAddress = new Uri("http://localhost:5157"),
         Timeout = TimeSpan.FromSeconds(30)
     };
 
