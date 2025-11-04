@@ -1,14 +1,35 @@
-# .github/workflows/tests.yml
 name: Tests
 on: [push, pull_request]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Run tests (defaults to localhost)
+
+      - name: Build, run API, and test
         run: |
+          # Start the API (corrected path)
+          dotnet run --project ./Guber.CoordinatesApi/Guber.CoordinatesApi.csproj --urls "http://localhost:5157" &
+          API_PID=$!
+
+          # Wait for the API to become available (retry health endpoint)
+          echo "Waiting for API to start..."
+          for i in {1..20}; do
+            if curl -s http://localhost:5157/health > /dev/null; then
+              echo "API is up!"
+              break
+            fi
+            echo "Still waiting... ($i)"
+            sleep 2
+          done
+
+          # Run the tests
           dotnet test ./Tests/CoordinatesApi.Tests/CoordinatesApi.Tests.csproj --configuration Release
+
+          # Kill the API after tests complete
+          kill $API_PID
