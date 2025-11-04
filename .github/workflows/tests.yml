@@ -1,18 +1,28 @@
 # .github/workflows/tests.yml
 name: Tests
 on: [push, pull_request]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Build and run CoordinatesApi
-        run: |
-          dotnet run --project ./src/CoordinatesApi/CoordinatesApi.csproj --urls "http://localhost:5157" & sleep 5
 
-      - name: Run tests (defaults to localhost)
+      - name: Build, run API, and test
         run: |
+          # Start the API in background
+          dotnet run --project ./src/CoordinatesApi/CoordinatesApi.csproj --urls "http://localhost:5157" &
+          API_PID=$!
+
+          # Give server time to start
+          sleep 10
+
+          # Run tests
           dotnet test ./Tests/CoordinatesApi.Tests/CoordinatesApi.Tests.csproj --configuration Release
+
+          # Stop the API after tests
+          kill $API_PID
