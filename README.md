@@ -63,7 +63,7 @@ XL CarType $1.70km -> $2.05km
 Example:
 If distance = 2.4 km → $4.25 + (2.4 × 1.7) = $8.33\
 
-If distance = 5.5, pet frienldy, XL Cartype -> 4.25 + 7.50 + (5.5 x 2.05) = 23.02
+If distance = 5.5, pet friendly, XL Cartype -> 4.25 + 7.50 + (5.5 x 2.05) = 23.02
 
 ### Notes
 
