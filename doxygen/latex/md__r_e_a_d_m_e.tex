@@ -1,0 +1,86 @@
+\chapter{🧭 Guber – Coordinates \& Fare Calculation Module }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{🧭 Guber – Coordinates \& Fare Calculation Module@{🧭 Guber – Coordinates \& Fare Calculation Module}}
+\label{md__r_e_a_d_m_e_autotoc_md6}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md6}%
+
+
+This module is part of the {\bfseries{Guber (Uber Clone)}} enterprise system. ~\newline
+ It handles\+:
+\begin{DoxyItemize}
+\item Address → Coordinates conversion (Geocoding)
+\item Route calculation and distance estimation
+\item Fare computation ({\ttfamily Base Fare + Per-\/\+Km Rate})
+\item Live driver/user location updates
+\item Simple REST APIs for integration with other teams (UI, Driver Management, Payment)
+\end{DoxyItemize}
+
+Built with {\bfseries{C\# (.NET 8)}} using {\bfseries{Open\+Street\+Map (Nominatim)}} and {\bfseries{OSRM}} routing.
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__r_e_a_d_m_e_autotoc_md8}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{1 Prerequisites}{1 Prerequisites}}\label{md__r_e_a_d_m_e_autotoc_md9}
+
+\begin{DoxyItemize}
+\item {\bfseries{.NET 8 SDK}} → \href{https://dotnet.microsoft.com/download}{\texttt{download here}}
+\item Any editor (Visual Studio 2022 or VS Code with C\# Dev Kit)
+\item Internet connection (for OSM/\+OSRM APIs)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{2 Clone the repository}{2 Clone the repository}}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/R-\/umaria/guber-\/live-\/tracking/}
+\DoxyCodeLine{cd\ guber-\/live-\/tracking/Guber.CoordinatesApi\ \ \ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsection{\texorpdfstring{3 Run the api}{3 Run the api}}\label{md__r_e_a_d_m_e_autotoc_md11}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bash}
+\DoxyCodeLine{dotnet\ restore}
+\DoxyCodeLine{dotnet\ run}
+
+\end{DoxyCode}
+
+
+Once started, you’ll see\+:
+
+"{}\+Now listening on\+: http\+://localhost\+:5157"{}
+
+Then open\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{://localhost:5157/swagger}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysection{\texorpdfstring{API overview}{API overview}}\label{md__r_e_a_d_m_e_autotoc_md12}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Endpoint  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Endpoint  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Method  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Example  }\\\cline{1-4}
+\endhead
+{\ttfamily /health}  &GET  &Check if service is running  &✓  \\\cline{1-4}
+{\ttfamily /api/geocode}  &GET  &Convert address → lat/lon  &{\ttfamily ?query=Conestoga+\+College}  \\\cline{1-4}
+{\ttfamily /api/route}  &POST  &Get route, distance, duration  &{\ttfamily \{ "{}\+Start\+Lat"{}\+: 43.\+48, "{}\+Start\+Lon"{}\+: -\/80.\+52, "{}\+End\+Lat"{}\+: 43.\+50, "{}\+End\+Lon"{}\+: -\/80.\+54 \}}  \\\cline{1-4}
+{\ttfamily /api/fare}  &POST  &Compute fare  &{\ttfamily \{ "{}\+Distance\+Km"{}\+: 2.\+4 \}}  \\\cline{1-4}
+{\ttfamily /api/live\+Location/driver}  &POST  &Update driver’s live location  &{\ttfamily \{ "{}\+Entity\+Id"{}\+: "{}\+D001"{}, "{}\+Lat"{}\+: 43.\+49, "{}\+Lon"{}\+: -\/80.\+53 \}}  \\\cline{1-4}
+{\ttfamily /api/live\+Location/user}  &POST  &Update user’s current location  &{\ttfamily \{ "{}\+Entity\+Id"{}\+: "{}\+U001"{}, "{}\+Lat"{}\+: 43.\+48, "{}\+Lon"{}\+: -\/80.\+52 \}}  \\\cline{1-4}
+{\ttfamily /api/last\+Location}  &GET  &Get last known location  &{\ttfamily ?entity\+Type=driver\&entity\+Id=D001}  \\\cline{1-4}
+Endpoint  &Method  &Description  &Example  \\\cline{1-4}
+{\ttfamily /api/estimate}  &POST  &{\bfseries{Takes pickup \& destination addresses, returns geocoded route, distance, fare, and polyline}}  &{\ttfamily \{ "{}pickup\+Address"{}\+: "{}\+Conestoga College, Waterloo, ON"{}, "{}destination\+Address"{}\+: "{}\+Conestoga Mall, Waterloo, ON"{} \}}  \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsection{\texorpdfstring{Fare Formula}{Fare Formula}}\label{md__r_e_a_d_m_e_autotoc_md13}
+Fare = Base Fare (\$4.25) + (Distance × \$1.70/km)
+
+Example\+: If distance = 2.\+4 km → \$4.25 + (2.\+4 × 1.\+7) = \$8.33\textbackslash{}\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsection{\texorpdfstring{Notes}{Notes}}\label{md__r_e_a_d_m_e_autotoc_md14}
+Data is stored in-\/memory (resets when the app restarts).
+
+Make sure to post at least one live location before fetching /api/last\+Location.
+
+All responses are in JSON and visible in Swagger UI.
+
+Works with other Guber modules via REST.\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysection{\texorpdfstring{Contributors}{Contributors}}\label{md__r_e_a_d_m_e_autotoc_md15}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxysubsection{\texorpdfstring{Coordinates \& Fare Module Team}{Coordinates \& Fare Module Team}}\label{md__r_e_a_d_m_e_autotoc_md16}
+Rishi Umaria, Brian Nguyen 

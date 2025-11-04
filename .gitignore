@@ -11,17 +11,3 @@ obj/
 .vscode/
 .idea/
 
-# Doxygen outputs (anywhere)
-**/html/
-**/latex/
-**/man/
-**/rtf/
-**/xml/
-**/docbook/
-
-# Keep our authored docs (config + markdown + images)
-!docs/
-!docs/*.md
-!docs/img/
-!docs/img/**
-!Doxyfile
