@@ -45,7 +45,7 @@ public sealed class EstimateService : IEstimateService
         var route = await _route.GetRouteAsync(routeReq, ct);
 
         // Step 4: Calculate fare
-        var fare = _fare.Calculate(route.DistanceKm);
+        var fare = _fare.Calculate(route.DistanceKm, req.type, req.pet );
 
         // Step 5: Return combined response
         return new EstimateResponse(
@@ -55,6 +55,8 @@ public sealed class EstimateService : IEstimateService
             pickup.Longitude,
             dest.Latitude,
             dest.Longitude,
+            req.type,
+            req.pet,
             route.DistanceKm,
             route.DurationMinutes,
             fare.TotalFare,

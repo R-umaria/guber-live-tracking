@@ -35,7 +35,7 @@ public class LiveApiTests
     [Fact(DisplayName= "Fare: 2.4 km ≈ $8.33 (±$0.40)")]
     public async Task Fare_ShouldReturnValidAmount()
     {
-        var payload = JsonContent.Create(new { DistanceKm = 2.4 });
+        var payload = JsonContent.Create(new { DistanceKm = 2.4, type = "X", pet = false });
         var resp = await _http.PostAsync("/api/fare", payload);
         resp.EnsureSuccessStatusCode();
         var json = await resp.Content.ReadFromJsonAsync<JsonElement>(_json);
@@ -51,7 +51,7 @@ public class LiveApiTests
             StartLat = 43.4723,
             StartLon = -80.5449,
             EndLat = 43.4899,
-            EndLon = -80.5280
+            EndLon = -80.5280,
         };
         var resp = await _http.PostAsJsonAsync("/api/route", req);
         resp.EnsureSuccessStatusCode();
@@ -68,7 +68,9 @@ public class LiveApiTests
         var req = new
         {
             pickupAddress = "Conestoga College, Waterloo, ON",
-            destinationAddress = "Conestoga Mall, Waterloo, ON"
+            destinationAddress = "Conestoga Mall, Waterloo, ON",
+            type = "X",
+            pet = false
         };
         var resp = await _http.PostAsJsonAsync("/api/estimate", req);
         resp.EnsureSuccessStatusCode();
