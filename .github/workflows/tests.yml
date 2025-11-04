@@ -9,6 +9,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - name: Build and run CoordinatesApi
+        run: |
+          dotnet run --project ./src/CoordinatesApi/CoordinatesApi.csproj --urls "http://localhost:5157" & sleep 5
+
       - name: Run tests (defaults to localhost)
         run: |
           dotnet test ./Tests/CoordinatesApi.Tests/CoordinatesApi.Tests.csproj --configuration Release
