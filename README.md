@@ -73,4 +73,4 @@ Works with other Guber modules via REST.
 
 ### Coordinates & Fare Module Team
 
-Rishi Umaria 
+Rishi Umaria, Brian Nguyen
