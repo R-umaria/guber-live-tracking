@@ -1,13 +1,53 @@
-# General dev noise
-bin/
-obj/
+# -------------------------------------------------------------------
+# Standard .NET / C# Visual Studio Ignores
+# -------------------------------------------------------------------
+
+# Build output
+[Bb]in/
+[Oo]bj/
+# Matches any 'bin' or 'obj' folder, regardless of casing.
+
+# Rider and Visual Studio user settings/caches
 .vs/
-*.user
+.idea/
+# Visual Studio Solution User Options
 *.suo
-*.swp
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet artifacts
+# NuGet cache files
+.nuget/
+# Packages folder (usually not needed with PackageReference)
+packages/
+
+# Test results
+TestResults/
+# Code coverage results
+*.trx
+*.coverage
+
+# -------------------------------------------------------------------
+# Temporary and OS files
+# -------------------------------------------------------------------
+
+# Temp files
 *.tmp
 *.log
-.DS_Store
-.vscode/
-.idea/
+*.bak
+*.swp
 
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# -------------------------------------------------------------------
+# IDE specific (If you want to keep them separated)
+# -------------------------------------------------------------------
+
+# VS Code specific settings
+.vscode/
