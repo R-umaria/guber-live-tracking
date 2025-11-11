@@ -79,8 +79,7 @@ public class LiveApiTests
         json.TryGetProperty("directions", out var dirs).Should().BeTrue();
         json.TryGetProperty("fare", out var fare).Should().BeTrue();
         json.TryGetProperty("polyline", out var poly).Should().BeTrue();
-        json.TryGetProperty("directions", out var dirs).Should().BeTrue();
-
+        
         dist.GetDouble().Should().BeGreaterThan(1);
         dur.GetDouble().Should().BeGreaterThan(1);
         dirs.ValueKind.Should().Be(JsonValueKind.Array);
@@ -90,7 +89,5 @@ public class LiveApiTests
         first.TryGetProperty("lon", out var lon0).Should().BeTrue();
         fare.GetDouble().Should().BeGreaterThan(5);
         poly.GetString().Should().NotBeNullOrWhiteSpace();
-        dirs.ValueKind.Should().Be(JsonValueKind.Array);
-        dirs.GetArrayLength().Should().BeGreaterThan(1);
     }
 }
