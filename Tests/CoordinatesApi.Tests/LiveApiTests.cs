@@ -76,12 +76,21 @@ public class LiveApiTests
 
         json.TryGetProperty("distanceKm", out var dist).Should().BeTrue();
         json.TryGetProperty("durationMinutes", out var dur).Should().BeTrue();
+        json.TryGetProperty("directions", out var dirs).Should().BeTrue();
         json.TryGetProperty("fare", out var fare).Should().BeTrue();
         json.TryGetProperty("polyline", out var poly).Should().BeTrue();
+        json.TryGetProperty("directions", out var dirs).Should().BeTrue();
 
         dist.GetDouble().Should().BeGreaterThan(1);
         dur.GetDouble().Should().BeGreaterThan(1);
+        dirs.ValueKind.Should().Be(JsonValueKind.Array);
+        dirs.GetArrayLength().Should().BeGreaterThan(1);
+        var first = dirs.EnumerateArray().First();
+        first.TryGetProperty("lat", out var lat0).Should().BeTrue();
+        first.TryGetProperty("lon", out var lon0).Should().BeTrue();
         fare.GetDouble().Should().BeGreaterThan(5);
         poly.GetString().Should().NotBeNullOrWhiteSpace();
+        dirs.ValueKind.Should().Be(JsonValueKind.Array);
+        dirs.GetArrayLength().Should().BeGreaterThan(1);
     }
 }
