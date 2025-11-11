@@ -1,23 +1,38 @@
-name: Build & Publish Doxygen
+name: Generate & Publish Doxygen Docs
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
 
+permissions:
+  contents: write   # Required to push to gh-pages
+
 jobs:
-  build:
+  build-docs:
     runs-on: ubuntu-latest
+    name: Build and Deploy Doxygen Docs
     steps:
-      - uses: actions/checkout@v4
-      - name: Install deps
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: sudo apt-get install -y doxygen graphviz
+
+      - name: Build Doxygen documentation
         run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
-      - name: Build docs
-        run: doxygen Doxyfile
-      - name: Deploy to gh-pages
+          doxygen Doxyfile
+          echo "Doxygen build complete. Output:"
+          ls -alh doxygen/html || true
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/html
+          publish_branch: gh-pages
+          publish_dir: doxygen/html
+          commit_message: "docs(doxygen): update API documentation [skip ci]"
+          force_orphan: true
