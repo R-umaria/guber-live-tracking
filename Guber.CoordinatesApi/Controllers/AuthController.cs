@@ -16,14 +16,21 @@ public class AuthController : ControllerBase
     {
         _config = config;
     }
-
     [HttpPost("token")]
     public IActionResult GetToken([FromBody] AuthRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.UserId))
             return BadRequest(new { error = "UserId is required" });
 
-        var key = _config["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key missing");
+        // Validate allowed roles
+        var allowedRoles = new[] { "driver", "user" };
+        var role = request.Role?.ToLower();
+
+        if (string.IsNullOrWhiteSpace(role) || !allowedRoles.Contains(role))
+            return BadRequest(new { error = "Invalid role. Allowed: 'driver', 'user'." });
+
+
+        var key = _config["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key missing");//check the key
         Console.WriteLine("JWT Key (generation): " + key);
         var issuer = _config["Jwt:Issuer"] ?? "Guber.LiveTracking";
         var audience = _config["Jwt:Audience"] ?? "Guber.LiveTracking";
@@ -32,11 +39,14 @@ public class AuthController : ControllerBase
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-        var userIdWithPrefix = $"driver:{request.UserId}".ToLowerInvariant();
+        var identity = $"{role}:{request.UserId}".ToLower();
+
+        // Define JWT claims: role, unique user identifier, subject, and token ID 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, userIdWithPrefix),
-            new Claim(ClaimTypes.NameIdentifier, userIdWithPrefix),
+            new Claim(ClaimTypes.Role, role),
+            new Claim(ClaimTypes.NameIdentifier, identity),
+            new Claim(JwtRegisteredClaimNames.Sub, identity),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
@@ -59,4 +69,5 @@ public class AuthController : ControllerBase
 public class AuthRequest
 {
     public string UserId { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;//either a driver or a user
 }
