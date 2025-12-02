@@ -1,8 +1,10 @@
 using Guber.CoordinatesApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Guber.CoordinatesApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/geocode")]
 public sealed class GeocodingController : ControllerBase

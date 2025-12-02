@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+# Visual Studio temporary files
+.vs/
+*.suo
+*.user
+
+# Ignore build output
+Guber.CoordinatesApi/bin/
+Guber.CoordinatesApi/obj/
+
+# Ignore local settings
+Guber.CoordinatesApi/appsettings.json
+Guber.CoordinatesApi/appsettings.Development.json
+
+# Ignore user secrets folder
+# *.user
+=======
 # -------------------------------------------------------------------
 # Standard .NET / C# Visual Studio Ignores
 # -------------------------------------------------------------------
@@ -63,3 +80,4 @@ docs.zip
 # VS/IDE bits
 .vscode/
 *.user
+>>>>>>> origin/main

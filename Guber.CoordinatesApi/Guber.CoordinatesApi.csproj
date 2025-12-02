@@ -1,12 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
+    <UserSecretsId>602e35fa-4925-444b-9b52-ca7b0ef0236f</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+  <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
+  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
   <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.8" />
   <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
   <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />

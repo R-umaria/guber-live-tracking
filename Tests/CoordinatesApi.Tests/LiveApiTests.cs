@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Text;
 using System.Text.Json;
 using FluentAssertions;
 using Xunit;
@@ -8,10 +7,29 @@ namespace CoordinatesApi.Tests;
 
 public class LiveApiTests
 {
-    private readonly HttpClient _http = new() { BaseAddress = TestSettings.BaseUri };
-    private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
+    private readonly HttpClient _http;
+    private readonly JsonSerializerOptions _json;
 
-    [Fact(DisplayName= "Health: /health returns 200 and status ok")]
+    public LiveApiTests()
+    {
+        _http = new HttpClient() { BaseAddress = TestSettings.BaseUri };
+        _json = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+
+        // Get a valid JWT token dynamically and set it for all requests
+        var token = GetJwtTokenAsync().GetAwaiter().GetResult();
+        _http.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+    }
+
+    private async Task<string> GetJwtTokenAsync(string userId = "testuser", string role = "user")
+    {
+        var resp = await _http.PostAsJsonAsync("/api/auth/token", new { UserId = userId, Role = role });
+        resp.EnsureSuccessStatusCode();
+        var json = await resp.Content.ReadFromJsonAsync<JsonElement>();
+        return json.GetProperty("token").GetString()!;
+    }
+
+    [Fact(DisplayName = "Health: /health returns 200 and status ok")]
     public async Task Health_ShouldReturnOk()
     {
         var resp = await _http.GetAsync("/health");
@@ -20,7 +38,7 @@ public class LiveApiTests
         json.GetProperty("status").GetString().Should().Be("ok");
     }
 
-    [Fact(DisplayName= "Geocode: returns latitude & longitude for Conestoga College")]
+    [Fact(DisplayName = "Geocode: returns latitude & longitude for Conestoga College")]
     public async Task Geocode_ShouldReturnLatLon()
     {
         var resp = await _http.GetAsync("/api/geocode?query=" + Uri.EscapeDataString("Conestoga College Waterloo"));
@@ -32,7 +50,7 @@ public class LiveApiTests
         lon.GetDouble().Should().BeLessThan(-70).And.BeGreaterThan(-90);
     }
 
-    [Fact(DisplayName= "Fare: 2.4 km ≈ $8.33 (±$0.40)")]
+    [Fact(DisplayName = "Fare: 2.4 km ≈ $8.33 (±$0.40)")]
     public async Task Fare_ShouldReturnValidAmount()
     {
         var payload = JsonContent.Create(new { DistanceKm = 2.4 });
@@ -40,10 +58,10 @@ public class LiveApiTests
         resp.EnsureSuccessStatusCode();
         var json = await resp.Content.ReadFromJsonAsync<JsonElement>(_json);
         var fare = json.GetProperty("totalFare").GetDouble();
-        fare.Should().BeInRange(7.9, 8.7); // 4.25 + 1.7*2.4 = 8.33
+        fare.Should().BeInRange(7.9, 8.7);
     }
 
-    [Fact(DisplayName= "Route: returns distance & duration between two Waterloo points")]
+    [Fact(DisplayName = "Route: returns distance & duration between two Waterloo points")]
     public async Task Route_ShouldReturnDistanceAndDuration()
     {
         var req = new
@@ -58,11 +76,11 @@ public class LiveApiTests
         var json = await resp.Content.ReadFromJsonAsync<JsonElement>(_json);
         json.TryGetProperty("distanceKm", out var dist).Should().BeTrue();
         json.TryGetProperty("durationMinutes", out var dur).Should().BeTrue();
-        dist.GetDouble().Should().BeGreaterThan(1); // sanity
+        dist.GetDouble().Should().BeGreaterThan(1);
         dur.GetDouble().Should().BeGreaterThan(1);
     }
 
-    [Fact(DisplayName= "Estimate: returns distance, duration, fare & polyline for two addresses")]
+    [Fact(DisplayName = "Estimate: returns distance, duration, fare & polyline for two addresses")]
     public async Task Estimate_ShouldReturnAll()
     {
         var req = new
@@ -79,7 +97,7 @@ public class LiveApiTests
         json.TryGetProperty("directions", out var dirs).Should().BeTrue();
         json.TryGetProperty("fare", out var fare).Should().BeTrue();
         json.TryGetProperty("polyline", out var poly).Should().BeTrue();
-        
+
         dist.GetDouble().Should().BeGreaterThan(1);
         dur.GetDouble().Should().BeGreaterThan(1);
         dirs.ValueKind.Should().Be(JsonValueKind.Array);
