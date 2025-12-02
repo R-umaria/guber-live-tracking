@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lat/Lon Path Viewer</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    header span {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      height: calc(100vh - 56px);
+    }
+
+    #controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: #020617;
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      border: 1px solid #1f2937;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #cbd5f5;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      resize: vertical;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      background: #020617;
+      color: #e5e7eb;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 1px #3b82f6;
+    }
+
+    #buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid #1d4ed8;
+      background: #1d4ed8;
+      color: white;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    }
+
+    button.secondary {
+      border-color: #374151;
+      background: transparent;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.8);
+    }
+
+    button.secondary:hover {
+      background: #111827;
+    }
+
+    #error {
+      font-size: 0.75rem;
+      color: #f97373;
+      min-height: 1rem;
+      white-space: pre-line;
+    }
+
+    #hint {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      line-height: 1.4;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.75rem;
+      border: 1px solid #1f2937;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Leaflet fix for dark background */
+    .leaflet-container {
+      background: #020617;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(260px, auto) 1fr;
+        height: auto;
+      }
+
+      #map {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lat/Lon Path Viewer</h1>
+    <span>Paste JSON → Plot path on map</span>
+  </header>
+
+  <main>
+    <section id="controls">
+      <label for="coordsInput">Coordinates JSON</label>
+      <textarea id="coordsInput" spellcheck="false">[
+  { "lat": 43.48145,  "lon": -80.524291 },
+  { "lat": 43.481279, "lon": -80.524259 },
+  { "lat": 43.481236, "lon": -80.524647 },
+  { "lat": 43.481222, "lon": -80.524769 },
+  { "lat": 43.481357, "lon": -80.524797 },
+  { "lat": 43.481586, "lon": -80.524845 },
+  { "lat": 43.481704, "lon": -80.524868 },
+  { "lat": 43.481754, "lon": -80.524879 },
+  { "lat": 43.481997, "lon": -80.524933 },
+  { "lat": 43.48224,  "lon": -80.524986 },
+  { "lat": 43.482266, "lon": -80.52499 },
+  { "lat": 43.482351, "lon": -80.525002 },
+  { "lat": 43.482425, "lon": -80.524825 },
+  { "lat": 43.482461, "lon": -80.524738 },
+  { "lat": 43.482515, "lon": -80.52461 }
+]</textarea>
+
+      <div id="buttons">
+        <button id="plotBtn">Plot Path</button>
+        <button id="clearBtn" class="secondary">Clear</button>
+      </div>
+
+      <div id="error"></div>
+
+      <div id="hint">
+        Expected format: an array of objects with <code>lat</code> and <code>lon</code>, e.g.<br />
+        <code>[{"lat": 43.48, "lon": -80.52}, ...]</code><br />
+        All points will be shown as markers and connected as a polyline.
+      </div>
+    </section>
+
+    <section id="map"></section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // Initialize map
+    const map = L.map("map").setView([43.48145, -80.524291], 16);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+    }).addTo(map);
+
+    let markersLayer = L.layerGroup().addTo(map);
+    let polylineLayer = L.polyline([], { weight: 4 }).addTo(map);
+
+    const coordsInput = document.getElementById("coordsInput");
+    const plotBtn = document.getElementById("plotBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const errorDiv = document.getElementById("error");
+
+    function parseCoords(text) {
+      let data;
+      text = text.trim();
+      if (!text) {
+        throw new Error("Input is empty.");
+      }
+
+      try {
+        // First try direct JSON parse
+        data = JSON.parse(text);
+      } catch (e) {
+        // If user pasted a list of objects without [ ], try to wrap it
+        try {
+          data = JSON.parse("[" + text.replace(/,+\s*$/, "") + "]");
+        } catch (e2) {
+          throw new Error("Invalid JSON. Ensure it's valid and has lat/lon fields.");
+        }
+      }
+
+      if (!Array.isArray(data)) {
+        throw new Error("JSON must be an array of objects.");
+      }
+
+      const points = [];
+
+      for (const item of data) {
+        if (typeof item !== "object" || item === null) continue;
+
+        const lat = Number(item.lat ?? item.latitude);
+        const lon = Number(item.lon ?? item.lng ?? item.long ?? item.longitude);
+
+        if (Number.isFinite(lat) && Number.isFinite(lon)) {
+          points.push([lat, lon]);
+        }
+      }
+
+      if (points.length === 0) {
+        throw new Error("No valid {lat, lon} points found.");
+      }
+
+      return points;
+    }
+
+    function plotPath() {
+      errorDiv.textContent = "";
+
+      let points;
+      try {
+        points = parseCoords(coordsInput.value);
+      } catch (err) {
+        errorDiv.textContent = err.message;
+        return;
+      }
+
+      // Clear previous layers
+      markersLayer.clearLayers();
+      polylineLayer.setLatLngs([]);
+
+      // Add markers
+      points.forEach((pt, index) => {
+        L.circleMarker(pt, {
+          radius: index === 0 || index === points.length - 1 ? 6 : 4,
+          weight: index === 0 || index === points.length - 1 ? 2 : 1,
+        })
+        .bindTooltip(
+          `Point ${index + 1}<br>Lat: ${pt[0].toFixed(6)}<br>Lon: ${pt[1].toFixed(6)}`,
+          { permanent: false }
+        )
+        .addTo(markersLayer);
+      });
+
+      // Draw polyline
+      polylineLayer.setLatLngs(points);
+
+      // Fit map to path
+      map.fitBounds(polylineLayer.getBounds(), { padding: [20, 20] });
+    }
+
+    function clearAll() {
+      markersLayer.clearLayers();
+      polylineLayer.setLatLngs([]);
+      errorDiv.textContent = "";
+    }
+
+    plotBtn.addEventListener("click", plotPath);
+    clearBtn.addEventListener("click", clearAll);
+
+    // Auto-plot initial example on load
+    window.addEventListener("load", plotPath);
+  </script>
+</body>
+</html>
