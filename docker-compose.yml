@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  coordinates-api:
+    image: rishiumaria/guber-coordinates-api:1.0.0
+    restart: unless-stopped
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+
+    networks:
+      - proxy_net
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  proxy_net:
+    external: true
+    name: main-stack_proxy_net

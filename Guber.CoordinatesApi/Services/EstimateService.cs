@@ -58,7 +58,8 @@ public sealed class EstimateService : IEstimateService
             route.DistanceKm,
             route.DurationMinutes,
             fare.TotalFare,
-            route.Polyline
+            route.Polyline,
+            route.Directions
         );
     }
 }

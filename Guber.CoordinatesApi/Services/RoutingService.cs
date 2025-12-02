@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Guber.CoordinatesApi.Models;
+using Guber.CoordinatesApi.Services;
 
 namespace Guber.CoordinatesApi.Services;
 
@@ -33,6 +34,9 @@ public sealed class OsrmRoutingService : IRoutingService
 
         var km = Math.Round(route.distance / 1000.0, 3);
         var minutes = Math.Round(route.duration / 60.0, 2);
-        return new RouteResponse(km, minutes, route.geometry!);
+
+        // Decode polyline6 -> coordinates
+        var directions = PolylineDecoder.Decode(route.geometry!, precision: 6);
+        return new RouteResponse(km, minutes, route.geometry!, directions);
     }
 }
