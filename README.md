@@ -30,6 +30,18 @@ Built with **C# (.NET 8)**, using **OpenStreetMap (Nominatim)** for geocoding an
 | Build | GitHub Actions CI/CD |
 
 ---
+## Demo GUI Screenshots
+
+
+![Login](./assets/Login.png){width=250px} ![Dashboard](./assets/Dashboard.png){width=250px}
+
+<!--
+<img src="./assets/Login.png" width="400" alt="Login"> <img src="./assets/Dashboard.png" width="400" alt="Dashboard">
+ -->
+
+
+
+---
 
 ## Getting Started
 
